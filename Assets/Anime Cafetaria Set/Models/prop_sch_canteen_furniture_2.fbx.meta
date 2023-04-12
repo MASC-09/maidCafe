@@ -1,0 +1,139 @@
+fileFormatVersion: 2
+guid: e0381438c1c09604eb74f062a0de535e
+timeCreated: 1499876780
+licenseType: Store
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: prop_sch_furniture_cn2_ceilingLamp
+    100004: prop_sch_furniture_cn2_ceilingLampB
+    100006: prop_sch_furniture_cn2_exhaustfan
+    100008: prop_sch_furniture_cn2_metalBar
+    100010: prop_sch_furniture_cn2_powersocket
+    100012: prop_sch_furniture_cn2_powerswitch
+    100014: prop_sch_furniture_cn2_shelfs
+    100016: prop_sch_furniture_cn2_sign_bowl
+    100018: prop_sch_furniture_cn2_sign_exit
+    100020: prop_sch_furniture_cn2_stove
+    100022: prop_sch_furniture_cn2_table
+    100024: prop_sch_furniture_cn2_trashcan
+    100026: prop_sch_furniture_cn2_vent
+    400000: //RootNode
+    400002: prop_sch_furniture_cn2_ceilingLamp
+    400004: prop_sch_furniture_cn2_ceilingLampB
+    400006: prop_sch_furniture_cn2_exhaustfan
+    400008: prop_sch_furniture_cn2_metalBar
+    400010: prop_sch_furniture_cn2_powersocket
+    400012: prop_sch_furniture_cn2_powerswitch
+    400014: prop_sch_furniture_cn2_shelfs
+    400016: prop_sch_furniture_cn2_sign_bowl
+    400018: prop_sch_furniture_cn2_sign_exit
+    400020: prop_sch_furniture_cn2_stove
+    400022: prop_sch_furniture_cn2_table
+    400024: prop_sch_furniture_cn2_trashcan
+    400026: prop_sch_furniture_cn2_vent
+    2300000: prop_sch_furniture_cn2_ceilingLamp
+    2300002: prop_sch_furniture_cn2_ceilingLampB
+    2300004: prop_sch_furniture_cn2_exhaustfan
+    2300006: prop_sch_furniture_cn2_metalBar
+    2300008: prop_sch_furniture_cn2_powersocket
+    2300010: prop_sch_furniture_cn2_powerswitch
+    2300012: prop_sch_furniture_cn2_shelfs
+    2300014: prop_sch_furniture_cn2_sign_bowl
+    2300016: prop_sch_furniture_cn2_sign_exit
+    2300018: prop_sch_furniture_cn2_stove
+    2300020: prop_sch_furniture_cn2_table
+    2300022: prop_sch_furniture_cn2_trashcan
+    2300024: prop_sch_furniture_cn2_vent
+    3300000: prop_sch_furniture_cn2_ceilingLamp
+    3300002: prop_sch_furniture_cn2_ceilingLampB
+    3300004: prop_sch_furniture_cn2_exhaustfan
+    3300006: prop_sch_furniture_cn2_metalBar
+    3300008: prop_sch_furniture_cn2_powersocket
+    3300010: prop_sch_furniture_cn2_powerswitch
+    3300012: prop_sch_furniture_cn2_shelfs
+    3300014: prop_sch_furniture_cn2_sign_bowl
+    3300016: prop_sch_furniture_cn2_sign_exit
+    3300018: prop_sch_furniture_cn2_stove
+    3300020: prop_sch_furniture_cn2_table
+    3300022: prop_sch_furniture_cn2_trashcan
+    3300024: prop_sch_furniture_cn2_vent
+    4300000: prop_sch_furniture_cn2_shelfs
+    4300002: prop_sch_furniture_cn2_stove
+    4300004: prop_sch_furniture_cn2_table
+    4300006: prop_sch_furniture_cn2_metalBar
+    4300008: prop_sch_furniture_cn2_vent
+    4300010: prop_sch_furniture_cn2_trashcan
+    4300012: prop_sch_furniture_cn2_exhaustfan
+    4300014: prop_sch_furniture_cn2_ceilingLampB
+    4300016: prop_sch_furniture_cn2_ceilingLamp
+    4300018: prop_sch_furniture_cn2_sign_bowl
+    4300020: prop_sch_furniture_cn2_sign_exit
+    4300022: prop_sch_furniture_cn2_powerswitch
+    4300024: prop_sch_furniture_cn2_powersocket
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleRotations: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 1
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
