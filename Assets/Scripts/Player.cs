@@ -24,16 +24,12 @@ public class Player : MonoBehaviour
     {
         player = GetComponent<CharacterController>();
         playerAnimatorController = GetComponent<Animator>();
+        mainCamera = Camera.main; // Cache the camera reference
     }
 
     // Update is called once per frame
     void Update()
     {
-        horizontalMove = Input.GetAxis("Horizontal");
-        verticalMove = Input.GetAxis("Vertical");
-        playerInput = new Vector3(horizontalMove, 0, verticalMove);
-        playerInput = Vector3.ClampMagnitude(playerInput, 1);
-
         horizontalMove = Input.GetAxis("Horizontal");
         verticalMove = Input.GetAxis("Vertical");
         playerInput = new Vector3(horizontalMove, 0, verticalMove);
@@ -49,9 +45,8 @@ public class Player : MonoBehaviour
 
         player.transform.LookAt(player.transform.position + movePlayer);
 
-        SetGravity();
-
-        player.Move(movePlayer * playerSpeed * Time.deltaTime);
+        // Move the player using fixed delta time
+        // and adjust for gravity in the FixedUpdate() function
     }
 
     //Get's the camera's direction
@@ -66,19 +61,25 @@ public class Player : MonoBehaviour
 
         camFoward = camFoward.normalized;
         camRight = camRight.normalized;
+    }
 
+    private void FixedUpdate()
+    {
+        SetGravity();
+        PlayerSkills();
+        player.Move(movePlayer * playerSpeed * Time.fixedDeltaTime);
     }
 
     void SetGravity()
     {
         if (player.isGrounded)
         {
-            fallVelocity = -gravity * Time.deltaTime;
+            fallVelocity = -gravity * Time.fixedDeltaTime;
             movePlayer.y = fallVelocity;
         }
         else
         {
-            fallVelocity -= gravity * Time.deltaTime;
+            fallVelocity -= gravity * Time.fixedDeltaTime;
             movePlayer.y = fallVelocity;
             playerAnimatorController.SetFloat("VerticalVelocity", player.velocity.y);
         }
