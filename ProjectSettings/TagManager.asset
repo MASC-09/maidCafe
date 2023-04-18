@@ -6,6 +6,7 @@ TagManager:
   tags:
   - seat
   - Customer
+  - Test
   layers:
   - Default
   - TransparentFX
