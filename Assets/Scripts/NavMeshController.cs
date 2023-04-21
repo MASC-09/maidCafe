@@ -73,22 +73,22 @@ public class NavMeshController : MonoBehaviour
                 if (timer > 30f)
                 {
                     state = animationState.sit_angry;
-                    Debug.Log("Animation: sit_angry");                 
+                    // Debug.Log("Animation: sit_angry");                 
                 }
                 state = animationState.sit_idle;
-                Debug.Log("Animation: sit_idle");                 
+                // Debug.Log("Animation: sit_idle");                 
             }
             else
             {
                 if (timer > 10f)
                 {
                     state = animationState.sit_angry;
-                    Debug.Log("Animation: sit_angry");
+                    // Debug.Log("Animation: sit_angry");
                 }
                 else
                 {
                     state = animationState.sit_pointing;
-                    Debug.Log("Animation: sit_poiting");    
+                    // Debug.Log("Animation: sit_poiting");    
                 }
             }
         }
@@ -132,12 +132,14 @@ public class NavMeshController : MonoBehaviour
         // StartCoroutine(logger("NPC destroyed"));
     }
 
-    // IEnumerator logger(string log)
-    // {
-    //     yield return new WaitForSeconds(5.0f);
-    //     Debug.Log(log);
-    // }
-    
+    public void setHasOrdered(bool state)
+    {
+        hasOrdered = state;
+    }
 
+    public void setHasEaten(bool state)
+    {
+        hasEaten = state;
+    }
 
 }
