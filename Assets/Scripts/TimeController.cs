@@ -12,6 +12,18 @@ public class TimeController : MonoBehaviour
     private float restante;
     private bool enMarcha;
 
+    public AudioSource source;
+    public AudioClip chillClip;
+    public AudioClip noChillClip;
+
+    private void Start()
+    {
+        source = GetComponent<AudioSource>();
+        source.clip = chillClip;
+        source.loop = true;
+        source.Play();
+    }
+
     private void Awake()
     {
         restante = (min * 60) + seg;
@@ -24,7 +36,13 @@ public class TimeController : MonoBehaviour
         if (enMarcha)
         {
             restante -= Time.deltaTime;
-            if (restante < 1)
+            if (restante <= 30)
+            {
+                source.Pause();
+                source.PlayOneShot(noChillClip);
+            }
+
+            if(restante <= 0)
             {
                 enMarcha = false;
                 SceneManager.LoadScene("EndGame");
@@ -35,5 +53,15 @@ public class TimeController : MonoBehaviour
             int tempSeg = Mathf.FloorToInt(restante % 60);
             tiempo.text = string.Format("{00:00}:{01:00}", tempMin, tempSeg);
         }
+    }
+
+    public void addTime(int segAdd)
+    {
+        restante += segAdd;
+    }
+
+    public void restTime(int segRest)
+    {
+        restante -= segRest;
     }
 }
