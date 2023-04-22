@@ -11,7 +11,6 @@ public class ClienteAtendido : MonoBehaviour
 
     void Start()
     {
-        atendido();
         textoContador = GetComponent<Text>();
         ActualizaContadorTexto();
     }
