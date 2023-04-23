@@ -8,8 +8,6 @@ public class CustomerSpawner : MonoBehaviour
     [SerializeField] private float spawnRate = 1.0f;
     [SerializeField] private int spawnLimit = 6;
     private int customerSpawned = 0;
-    private GameObject[]  tables;
-    private int busyTables= 0;
     [SerializeField] private bool isOn = true;
 
     private Coroutine spawnCoroutine;

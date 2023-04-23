@@ -43,7 +43,7 @@ public class NavMeshController : MonoBehaviour
             }
         }
         Transform emptyTable = tables.Last();
-        Seat onTable = emptyTable.GetComponent<Seat>();
+        onTable = emptyTable.GetComponent<Seat>();
 
 
         Debug.Log($"Mesas disponibles {tables.Length}");
@@ -127,7 +127,7 @@ public class NavMeshController : MonoBehaviour
         {
             isAtSeat = true;
             // StartCoroutine(logger("reached seat, starting counter"));
-            //timerStarted = true;                      
+            timerStarted = true;                      
             Debug.Log("Reached seat, starting timer.");                 
 
         }
@@ -135,7 +135,7 @@ public class NavMeshController : MonoBehaviour
         {
             isAtSeat = true;
             // StartCoroutine(logger("reached seat, starting counter"));
-            //timerStarted = true;     
+            timerStarted = true;     
             Debug.Log("Collided with Test.");                 
 
         }
