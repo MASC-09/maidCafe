@@ -1,5 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
+//using System.Linq;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -7,6 +7,7 @@ public class NavMeshController : MonoBehaviour
 {
     public Transform target;
     public NavMeshAgent agent;
+    public Seat onTable;
     public float movementSpeed;
     private enum animationState {idle, walking, sit_idle, sit_pointing, sit_angry};
     public Animator anim;
@@ -18,19 +19,43 @@ public class NavMeshController : MonoBehaviour
     [SerializeField] public float destructionDelay = 40.0f;
     [SerializeField] public float timer = 0.0f;
     [SerializeField] public bool timerStarted = false;
-    
-
-
-
-
+    private GameObject[] tableObjects;
+    private Transform[] tables;
     
     // Start is called before the first frame update
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
         anim = GetComponent<Animator>();
-        agent.destination = target.position;
-        agent.speed = movementSpeed;
+        tableObjects = GameObject.FindGameObjectsWithTag("seat").Where(o => !o.GetComponent<Seat>().isOccupied).ToArray();
+
+        tables = new Transform[tableObjects.Length];
+        //Collider[] colliders = tableObjects.SelectMany(t => t.GetComponentsInChildren<Collider>()).ToArray();
+
+        
+
+        for (int i = 0; i < tableObjects.Length; i++)
+        {
+            Debug.Log($"Mesa {i} esta {tableObjects[i].GetComponent<Seat>().isOccupied}");
+            if (!tableObjects[i].GetComponent<Seat>().isOccupied)
+            {
+                tables[i] = tableObjects[i].transform;
+            }
+        }
+        Transform emptyTable = tables.Last();
+        onTable = emptyTable.GetComponent<Seat>();
+
+
+        Debug.Log($"Mesas disponibles {tables.Length}");
+
+        if (emptyTable != null )
+        {
+            Debug.Log("Dentro del empty table not null");
+            target = emptyTable;
+            agent.destination = target.position;
+            agent.speed = movementSpeed;
+        }
+
     }
 
     // Update is called once per frame
@@ -46,6 +71,7 @@ public class NavMeshController : MonoBehaviour
         {
             killNPC();
         }
+
         if(!isAtSeat)
         {
             agent.destination = target.position;
@@ -76,19 +102,19 @@ public class NavMeshController : MonoBehaviour
                     // Debug.Log("Animation: sit_angry");                 
                 }
                 state = animationState.sit_idle;
-                // Debug.Log("Animation: sit_idle");                 
+                //Debug.Log("Animation: sit_idle");                 
             }
             else
             {
                 if (timer > 10f)
                 {
                     state = animationState.sit_angry;
-                    // Debug.Log("Animation: sit_angry");
+                    //Debug.Log("Animation: sit_angry");
                 }
                 else
                 {
                     state = animationState.sit_pointing;
-                    // Debug.Log("Animation: sit_poiting");    
+                    //Debug.Log("Animation: sit_poiting");    
                 }
             }
         }
@@ -129,6 +155,7 @@ public class NavMeshController : MonoBehaviour
 
     private void killNPC()
     {
+        onTable.isOccupied = false;
         Destroy(gameObject);
     }
 
