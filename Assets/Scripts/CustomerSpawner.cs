@@ -5,7 +5,7 @@ using UnityEngine;
 public class CustomerSpawner : MonoBehaviour
 {
     public GameObject Remy;
-    [SerializeField] private float spawnRate = 1.0f;
+    [SerializeField] private float spawnRate = 12.0f;
     [SerializeField] private int spawnLimit = 6;
     private int customerSpawned = 0;
     [SerializeField] private bool isOn = true;
