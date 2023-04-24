@@ -115,21 +115,24 @@ public class NavMeshController : MonoBehaviour
         }
     }
 
-    //function that destroys the game object after the time is completed.
-    // IEnumerator DestroyAfterDelay()
-    // {
-    //     yield return new WaitForSeconds(destructionDelay);
-    //     killNPC();
-    // }
-    private void clientServed()
+    public void clientServed()
     {
+        //add time to general timer.
+        //add success music
         killNPC();
+    }
+
+    public void clientNotServed()
+{
+        //reduce time to general timer
+        // add failure music
+        killNPC();
+
     }
 
     private void killNPC()
     {
         Destroy(gameObject);
-        // StartCoroutine(logger("NPC destroyed"));
     }
 
     public void setHasOrdered(bool state)

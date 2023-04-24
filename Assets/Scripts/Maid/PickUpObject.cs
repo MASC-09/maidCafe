@@ -7,12 +7,16 @@ public class PickUpObject : MonoBehaviour
     public float range = 5f; // The range within which the player can pick up objects
     public LayerMask layerMask; // The layer that the objects the player can pick up are on
 
+    public GameObject Kitchen;
     private GameObject currentObject; // The object that the player is currently holding
     private Transform objectHolder;
     private Vector3 objectPosition = new Vector3(0, 1.0f, 0.4f);
 
     public GameObject ClientOrder;
     public GameObject Meal;
+
+    public bool hasOrderHand = false;
+    public bool hasFoodHand = false;
 
     void Start()
     {
@@ -21,66 +25,85 @@ public class PickUpObject : MonoBehaviour
     }
 
     void Update()
+{
+    if (currentObject == null) // If the player isn't holding an object
     {
-        if (currentObject == null) // If the player isn't holding an object
-        {
-            RaycastHit hit;
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition); // Cast a ray from the mouse position
+        RaycastHit hit;
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition); // Cast a ray from the mouse position
 
-            if (Physics.Raycast(ray, out hit, range, layerMask)) // If the ray hits an object on the specified layer within the range
+        if (Physics.Raycast(ray, out hit, range, layerMask)) // If the ray hits an object on the specified layer within the range
+        {
+            string collisionTag = hit.collider.tag;
+            if (collisionTag.Equals("Food") || collisionTag.Equals("Order")) // If the object is tagged as pickupable
             {
-                if (hit.collider.CompareTag("Pickupable")) // If the object is tagged as pickupable
+                if (Input.GetKeyDown(KeyCode.E)) // If the player presses the E key
                 {
-                    if (Input.GetKeyDown(KeyCode.E)) // If the player presses the E key
+                    currentObject = hit.collider.gameObject; // Set the current object to the hit object
+                    currentObject.transform.SetParent(transform); // Set the hit object's parent to the player
+                    currentObject.transform.localPosition = objectPosition;  // Move the object slightly in front of the player
+                    currentObject.GetComponent<Rigidbody>().isKinematic = true; // Set the object's rigidbody to kinematic
+                    
+                    if (collisionTag.Equals("Food"))
                     {
-                        currentObject = hit.collider.gameObject; // Set the current object to the hit object
-                        currentObject.transform.SetParent(transform); // Set the hit object's parent to the player
-                        currentObject.transform.localPosition = objectPosition;  // Move the object slightly in front of the player
-                        currentObject.GetComponent<Rigidbody>().isKinematic = true; // Set the object's rigidbody to kinematic
+                        hasFoodHand = true;
+                        hasOrderHand = false;
+                    }
+                    else if (collisionTag.Equals("Order"))
+                    {
+                        hasOrderHand = true;
+                        hasFoodHand = false;
                     }
                 }
             }
-        }
-        else // If the player is holding an object
-        {
-            if (Input.GetKeyDown(KeyCode.E)) // If the player presses the E key
+            else if (hit.collider.CompareTag("Customer"))
             {
-                currentObject.transform.SetParent(null); // Set the object's parent to null
-                currentObject.GetComponent<Rigidbody>().isKinematic = false; // Set the object's rigidbody to non-kinematic
-                currentObject = null; // Set the current object to null
-            }
-        }
-    }
-
-    //Method for when the player enters the intraction radius of a customer.
-    private void OnTriggerEnter(Collider other) 
-    {
-        if (other.CompareTag("Interaction") && currentObject == null)
-        {
-            Debug.Log("Entered Ineraction Area.");
-
-            NavMeshController customer = other.GetComponentInParent<NavMeshController>();
-            if(!customer.hasOrdered)
-            {
-                if(Input.GetKeyDown(KeyCode.E))
+                if (Input.GetKeyDown(KeyCode.E)) // If the player presses the E key
                 {
-                    // Instantiate the client order prefab and set it as the current object
+                    NavMeshController customer = hit.collider.GetComponent<NavMeshController>();
                     currentObject = Instantiate(ClientOrder, transform.position + transform.forward * 2f, Quaternion.identity);
-                    currentObject.transform.SetParent(transform); // Set the order's parent to the player
-                    currentObject.GetComponent<Rigidbody>().isKinematic = true; // Set the order's rigidbody to kinematic
+                    currentObject.transform.SetParent(transform); // Set the hit object's parent to the player
+                    currentObject.transform.localPosition = objectPosition;  // Move the object slightly in front of the player
+                    currentObject.GetComponent<Rigidbody>().isKinematic = true; // Set the object's rigidbody to kinematic
                     customer.setHasOrdered(true);
                     Debug.Log("Customer has Ordered.");
+                    hasOrderHand = true;
                 }
             }
         }
-        else if(other.CompareTag("Deliver") && currentObject != null)
-        {   
-            if(Input.GetKeyDown(KeyCode.E))
-            {
-                Destroy(currentObject);
-                //Oder Delivered()
-            }
-        }   
+    }
+    else // If the player is holding an object
+    {
+        if (Input.GetKeyDown(KeyCode.E)) // If the player presses the E key
+        {
+            currentObject.transform.SetParent(null); // Set the object's parent to null
+            currentObject.GetComponent<Rigidbody>().isKinematic = false; // Set the object's rigidbody to non-kinematic
+            currentObject = null; // Set the current object to null
+            hasOrderHand = false;
+            hasFoodHand = false;
+        }
+    }
+}
+
+
+    
+   private void OnTriggerEnter(Collider other) 
+   {
+    //player deliver order in kitchen
+    if (other.CompareTag("Deliver") && currentObject != null && hasOrderHand == true)
+        {
+            Kitchen kitchenInstance = FindObjectOfType<Kitchen>();
+            Destroy(currentObject); // Destroy the current object
+            currentObject = null; // Set the current object to null
+            hasOrderHand = false;
+            kitchenInstance.StartCooking();
+        }
+    else if ( other.CompareTag("Customer") && currentObject!= null && hasFoodHand == true)
+        {
+            Destroy(currentObject); // Destroy the current object
+            currentObject = null; // Set the current object to null
+            hasFoodHand = false;
+            // Customer.ClientServed(); 
+        }
     }
 
     
