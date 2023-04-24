@@ -99,7 +99,7 @@ public class NavMeshController : MonoBehaviour
                 if (timer > 30f)
                 {
                     state = animationState.sit_angry;
-                    //Debug.Log("Animation: sit_angry");                 
+                    // Debug.Log("Animation: sit_angry");                 
                 }
                 state = animationState.sit_idle;
                 //Debug.Log("Animation: sit_idle");                 
@@ -131,40 +131,42 @@ public class NavMeshController : MonoBehaviour
             Debug.Log("Reached seat, starting timer.");                 
 
         }
-        if (other.CompareTag("Test"))
+        if (other.CompareTag("Food"))
         {
-            isAtSeat = true;
-            // StartCoroutine(logger("reached seat, starting counter"));
-            timerStarted = true;     
-            Debug.Log("Collided with Test.");                 
-
+            Debug.Log("Customer is in contact Food."); 
+            clientServed();                
         }
     }
 
-    //function that destroys the game object after the time is completed.
-    // IEnumerator DestroyAfterDelay()
-    // {
-    //     yield return new WaitForSeconds(destructionDelay);
-    //     killNPC();
-    // }
-    private void clientServed()
+    public void clientServed()
     {
+        //add time to general timer.
+        //add success music
         killNPC();
+    }
+
+    public void clientNotServed()
+{
+        //reduce time to general timer
+        // add failure music
+        killNPC();
+
     }
 
     private void killNPC()
     {
         onTable.isOccupied = false;
         Destroy(gameObject);
-        // StartCoroutine(logger("NPC destroyed"));
     }
 
-    // IEnumerator logger(string log)
-    // {
-    //     yield return new WaitForSeconds(5.0f);
-    //     Debug.Log(log);
-    // }
-    
+    public void setHasOrdered(bool state)
+    {
+        hasOrdered = state;
+    }
 
+    public void setHasEaten(bool state)
+    {
+        hasEaten = state;
+    }
 
 }

@@ -7,6 +7,11 @@ TagManager:
   - seat
   - Customer
   - Test
+  - Pickupable
+  - Interaction
+  - Deliver
+  - Food
+  - Order
   layers:
   - Default
   - TransparentFX
@@ -14,11 +19,11 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Player
+  - Cutomer
+  - Ignore Raycast
+  - Orders
+  - Food
   - 
   - 
   - 
