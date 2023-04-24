@@ -105,13 +105,10 @@ public class NavMeshController : MonoBehaviour
             Debug.Log("Reached seat, starting timer.");                 
 
         }
-        if (other.CompareTag("Test"))
+        if (other.CompareTag("Food"))
         {
-            isAtSeat = true;
-            // StartCoroutine(logger("reached seat, starting counter"));
-            timerStarted = true;     
-            Debug.Log("Collided with Test.");                 
-
+            Debug.Log("Customer is in contact Food."); 
+            clientServed();                
         }
     }
 

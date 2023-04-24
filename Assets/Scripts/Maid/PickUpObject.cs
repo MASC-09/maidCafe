@@ -33,9 +33,11 @@ public class PickUpObject : MonoBehaviour
 
         if (Physics.Raycast(ray, out hit, range, layerMask)) // If the ray hits an object on the specified layer within the range
         {
-            string collisionTag = hit.collider.tag;
-            if (collisionTag.Equals("Food") || collisionTag.Equals("Order")) // If the object is tagged as pickupable
+
+            if (hit.collider.CompareTag("Food") || hit.collider.CompareTag("Order")) // If the object is tagged as pickupable
             {
+                string collisionTag = hit.collider.tag;
+                Debug.Log("player Picked up " + collisionTag);
                 if (Input.GetKeyDown(KeyCode.E)) // If the player presses the E key
                 {
                     currentObject = hit.collider.gameObject; // Set the current object to the hit object
@@ -59,14 +61,25 @@ public class PickUpObject : MonoBehaviour
             {
                 if (Input.GetKeyDown(KeyCode.E)) // If the player presses the E key
                 {
-                    NavMeshController customer = hit.collider.GetComponent<NavMeshController>();
-                    currentObject = Instantiate(ClientOrder, transform.position + transform.forward * 2f, Quaternion.identity);
-                    currentObject.transform.SetParent(transform); // Set the hit object's parent to the player
-                    currentObject.transform.localPosition = objectPosition;  // Move the object slightly in front of the player
-                    currentObject.GetComponent<Rigidbody>().isKinematic = true; // Set the object's rigidbody to kinematic
-                    customer.setHasOrdered(true);
-                    Debug.Log("Customer has Ordered.");
-                    hasOrderHand = true;
+                    // if(currentObject.tag == "Food")
+                    // {
+                    //     Debug.Log("Colliding with customer");
+                    //     Destroy(currentObject); // Destroy the current object
+                    //     currentObject = null; // Set the current object to null
+                    //     hasFoodHand = false;
+                    //     // Customer.ClientServed(); 
+                    // }
+                    // else
+                    // {
+                        NavMeshController customer = hit.collider.GetComponent<NavMeshController>();
+                        currentObject = Instantiate(ClientOrder, transform.position + transform.forward * 2f, Quaternion.identity);
+                        currentObject.transform.SetParent(transform); // Set the hit object's parent to the player
+                        currentObject.transform.localPosition = objectPosition;  // Move the object slightly in front of the player
+                        currentObject.GetComponent<Rigidbody>().isKinematic = true; // Set the object's rigidbody to kinematic
+                        customer.setHasOrdered(true);
+                        Debug.Log("Customer has Ordered.");
+                        hasOrderHand = true;
+                    // }
                 }
             }
         }
@@ -89,21 +102,33 @@ public class PickUpObject : MonoBehaviour
    private void OnTriggerEnter(Collider other) 
    {
     //player deliver order in kitchen
-    if (other.CompareTag("Deliver") && currentObject != null && hasOrderHand == true)
+    if (other.CompareTag("Deliver") && currentObject != null )
         {
-            Kitchen kitchenInstance = FindObjectOfType<Kitchen>();
-            Destroy(currentObject); // Destroy the current object
-            currentObject = null; // Set the current object to null
-            hasOrderHand = false;
-            kitchenInstance.StartCooking();
+            if(hasOrderHand)
+            {
+                Kitchen kitchenInstance = FindObjectOfType<Kitchen>();
+                Destroy(currentObject); // Destroy the current object
+                currentObject = null; // Set the current object to null
+                hasOrderHand = false;
+                kitchenInstance.StartCooking();
+            }
+            else if ( hasFoodHand)
+            {
+                Destroy(currentObject); // Destroy the current object
+                currentObject = null; // Set the current object to null
+                hasFoodHand = false;
+            }
+            
         }
-    else if ( other.CompareTag("Customer") && currentObject!= null && hasFoodHand == true)
-        {
-            Destroy(currentObject); // Destroy the current object
-            currentObject = null; // Set the current object to null
-            hasFoodHand = false;
-            // Customer.ClientServed(); 
-        }
+        //player deliver food to customer
+    // else if ( other.CompareTag("Customer") && currentObject!= null && hasFoodHand == true)
+    //     {
+    //         // Debug.Log("Colliding with customer");
+    //         // Destroy(currentObject); // Destroy the current object
+    //         // currentObject = null; // Set the current object to null
+    //         // hasFoodHand = false;
+    //         // // Customer.ClientServed(); 
+    //     }
     }
 
     
