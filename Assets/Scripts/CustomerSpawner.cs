@@ -24,8 +24,10 @@ public class CustomerSpawner : MonoBehaviour
     {
         while (customerSpawned < spawnLimit)
         {
+            
             yield return new WaitForSeconds(spawnRate);
             Instantiate(Remy, transform.position, transform.rotation);
+            //doorbell.mp3
             customerSpawned++;
         }
         

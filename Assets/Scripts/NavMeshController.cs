@@ -141,14 +141,15 @@ public class NavMeshController : MonoBehaviour
     public void clientServed()
     {
         //add time to general timer.
-        //add success music
+        //sum clientes atendidos 
+        //Complete_bell.mp3
         killNPC();
     }
 
     public void clientNotServed()
 {
         //reduce time to general timer
-        // add failure music
+        // dying_npc.mp3
         killNPC();
 
     }

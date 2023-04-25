@@ -42,11 +42,13 @@ public class TimeController : MonoBehaviour
                 source.PlayOneShot(noChillClip);
             }
 
+            //Juego termina
             if(restante <= 0)
             {
                 enMarcha = false;
                 SceneManager.LoadScene("EndGame");
-                //aquí se pone toda la lógica que se quiere cuando se acaba el tiempo
+                //fail.mp3
+                //aquï¿½ se pone toda la lï¿½gica que se quiere cuando se acaba el tiempo
             }
 
             int tempMin = Mathf.FloorToInt(restante / 60);
