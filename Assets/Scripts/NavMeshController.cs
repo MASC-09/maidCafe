@@ -21,13 +21,24 @@ public class NavMeshController : MonoBehaviour
     [SerializeField] public bool timerStarted = false;
     private GameObject[] tableObjects;
     private Transform[] tables;
-    
+
+    public AudioSource source;
+    public AudioClip Complete_bell;
+    public AudioClip dying_npc;
+
+    TimeController TimeController;
+    ClienteAtendido ClienteAtendido;
+
     // Start is called before the first frame update
     void Start()
     {
+        source = GetComponent<AudioSource>();
         agent = GetComponent<NavMeshAgent>();
         anim = GetComponent<Animator>();
         tableObjects = GameObject.FindGameObjectsWithTag("seat").Where(o => !o.GetComponent<Seat>().isOccupied).ToArray();
+
+        TimeController = GameObject.FindGameObjectWithTag("Timer_Tag").GetComponent<TimeController>();
+        ClienteAtendido = GameObject.FindGameObjectWithTag("Costumer_Tag").GetComponent<ClienteAtendido>();
 
         tables = new Transform[tableObjects.Length];
         //Collider[] colliders = tableObjects.SelectMany(t => t.GetComponentsInChildren<Collider>()).ToArray();
@@ -140,16 +151,16 @@ public class NavMeshController : MonoBehaviour
 
     public void clientServed()
     {
-        //add time to general timer.
-        //sum clientes atendidos 
-        //Complete_bell.mp3
+        TimeController.addTime(10); //We can change the amount of time that is add
+        ClienteAtendido.atendido();//sum clientes atendidos 
+        source.PlayOneShot(Complete_bell);
         killNPC();
     }
 
     public void clientNotServed()
 {
-        //reduce time to general timer
-        // dying_npc.mp3
+        TimeController.restTime(10); //We can change the amount of time that is rest
+        source.PlayOneShot(dying_npc);
         killNPC();
 
     }

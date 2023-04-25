@@ -12,9 +12,13 @@ public class CustomerSpawner : MonoBehaviour
 
     private Coroutine spawnCoroutine;
 
+    public AudioSource source;
+    public AudioClip doorbell;
+
     void Start()
     {
-        if(isOn)
+        source = GetComponent<AudioSource>();
+        if (isOn)
         {
             StartSpawnCoroutine();
         }
@@ -27,7 +31,7 @@ public class CustomerSpawner : MonoBehaviour
             
             yield return new WaitForSeconds(spawnRate);
             Instantiate(Remy, transform.position, transform.rotation);
-            //doorbell.mp3
+            source.PlayOneShot(doorbell);
             customerSpawned++;
         }
         

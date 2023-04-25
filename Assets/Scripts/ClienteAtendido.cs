@@ -18,7 +18,7 @@ public class ClienteAtendido : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        ActualizaContadorTexto();
     }
 
     public void atendido()

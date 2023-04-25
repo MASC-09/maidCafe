@@ -2,9 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using static Unity.VisualScripting.Member;
 
 public class MenuController : MonoBehaviour
 {
+    public AudioSource source;
+    public AudioClip failSound;
+    private void Start()
+    {
+        source = GetComponent<AudioSource>();
+        source.clip = failSound;
+        source.Play();
+    }
     public void ExitButton()
     {
         Application.Quit();
