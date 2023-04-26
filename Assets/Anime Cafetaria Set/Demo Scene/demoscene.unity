@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 85116604}
-  m_IndirectSpecularColor: {r: 0.1827183, g: 0.22842774, b: 0.30708414, a: 1}
+  m_IndirectSpecularColor: {r: 0.18271899, g: 0.22842878, b: 0.30708593, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -13235,13 +13235,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf347586d156a13479033cf39d23c38e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  min: 0
-  seg: 10
+  min: 2
+  seg: 0
   tiempo: {fileID: 1198519492}
   source: {fileID: 2122264116}
   chillClip: {fileID: 8300000, guid: 6c843c898abf25b3d97cafab6b7adc2f, type: 3}
   noChillClip: {fileID: 8300000, guid: 80b6418666e0f4672a355a2d851b5ec4, type: 3}
-  finJuego: {fileID: 8300000, guid: 0ddc09184e2b5ae8d8a7dfa6cb8ea3f9, type: 3}
+  Complete_bell: {fileID: 8300000, guid: c033ca6c263e04163b47788c86beb43b, type: 3}
+  dying_npc: {fileID: 8300000, guid: dc6b4ca76b86b4ae9ac6b6b938b1ed2a, type: 3}
 --- !u!82 &2122264116
 AudioSource:
   m_ObjectHideFlags: 0
