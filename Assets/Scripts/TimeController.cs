@@ -15,6 +15,7 @@ public class TimeController : MonoBehaviour
     public AudioSource source;
     public AudioClip chillClip;
     public AudioClip noChillClip;
+    public AudioClip finJuego;
 
     private void Start()
     {
@@ -46,8 +47,8 @@ public class TimeController : MonoBehaviour
             if(restante <= 0)
             {
                 enMarcha = false;
+                //Fail.mp3 file is playing once 'EndGame' is load
                 SceneManager.LoadScene("EndGame");
-                //fail.mp3
                 //aqu� se pone toda la l�gica que se quiere cuando se acaba el tiempo
             }
 
@@ -59,11 +60,14 @@ public class TimeController : MonoBehaviour
 
     public void addTime(int segAdd)
     {
+        Debug.Log("Estoy sumando tiempo");
         restante += segAdd;
     }
 
     public void restTime(int segRest)
     {
+        Debug.Log("Estoy restando tiempo");
         restante -= segRest;
+
     }
 }

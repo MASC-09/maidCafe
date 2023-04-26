@@ -12,6 +12,8 @@ TagManager:
   - Deliver
   - Food
   - Order
+  - Timer_Tag
+  - Costumer_Tag
   layers:
   - Default
   - TransparentFX

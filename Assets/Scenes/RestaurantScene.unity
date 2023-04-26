@@ -828,7 +828,6 @@ GameObject:
   - component: {fileID: 677534775}
   - component: {fileID: 677534777}
   - component: {fileID: 677534778}
-  - component: {fileID: 677534779}
   m_Layer: 0
   m_Name: PanelTiempo
   m_TagString: Untagged
@@ -910,12 +909,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf347586d156a13479033cf39d23c38e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  min: 3
-  seg: 30
+  min: 0
+  seg: 10
   tiempo: {fileID: 105989053}
   source: {fileID: 677534778}
-  chillClip: {fileID: 8300000, guid: abf93367c4f090d4cb85f15011bcf193, type: 3}
-  noChillClip: {fileID: 8300000, guid: 094690f5f1b31444fa90d22d2e0ef551, type: 3}
+  chillClip: {fileID: 8300000, guid: 6c843c898abf25b3d97cafab6b7adc2f, type: 3}
+  noChillClip: {fileID: 8300000, guid: 80b6418666e0f4672a355a2d851b5ec4, type: 3}
+  finJuego: {fileID: 8300000, guid: 0ddc09184e2b5ae8d8a7dfa6cb8ea3f9, type: 3}
 --- !u!82 &677534778
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1012,20 +1012,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &677534779
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 677534773}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8f174a13ad5be694b96e779b2d89e601, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  textoContador: {fileID: 1560604242}
-  UI_TEXT: Clientes Atendidos
 --- !u!1 &699191046
 GameObject:
   m_ObjectHideFlags: 0
@@ -1711,6 +1697,7 @@ GameObject:
   - component: {fileID: 1560604241}
   - component: {fileID: 1560604243}
   - component: {fileID: 1560604242}
+  - component: {fileID: 1560604244}
   m_Layer: 0
   m_Name: ClientesAtendidos
   m_TagString: Untagged
@@ -1780,6 +1767,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1560604240}
   m_CullTransparentMesh: 1
+--- !u!114 &1560604244
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1560604240}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f174a13ad5be694b96e779b2d89e601, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  textoContador: {fileID: 1560604242}
+  UI_TEXT: Clientes Atendidos
 --- !u!1 &1625908242
 GameObject:
   m_ObjectHideFlags: 0
