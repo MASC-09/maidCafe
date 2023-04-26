@@ -540,6 +540,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   agent: {fileID: 7329138992707077797}
+  onTable: {fileID: 0}
   movementSpeed: 1
   anim: {fileID: 7329138992707077850}
   isAtSeat: 0
@@ -550,6 +551,11 @@ MonoBehaviour:
   destructionDelay: 40
   timer: 0
   timerStarted: 0
+  source: {fileID: 0}
+  Complete_bell: {fileID: 0}
+  dying_npc: {fileID: 8300000, guid: dc6b4ca76b86b4ae9ac6b6b938b1ed2a, type: 3}
+  TimeController: {fileID: 0}
+  clienteAtendido: {fileID: 0}
 --- !u!1 &7329138992761670770
 GameObject:
   m_ObjectHideFlags: 0
