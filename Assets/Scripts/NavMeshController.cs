@@ -22,10 +22,6 @@ public class NavMeshController : MonoBehaviour
     private GameObject[] tableObjects;
     private Transform[] tables;
 
-    public AudioSource source;
-    public AudioClip Complete_bell;
-    public AudioClip dying_npc;
-
     public TimeController TimeController;
     public ClienteAtendido clienteAtendido;
 
@@ -152,14 +148,12 @@ public class NavMeshController : MonoBehaviour
     {
         TimeController.addTime(10); //We can change the amount of time that is add
         clienteAtendido.atendido();
-        source.PlayOneShot(Complete_bell);
         killNPC();
     }
 
     public void clientNotServed()
     {
         TimeController.restTime(10); //We can change the amount of time that is rest
-        source.PlayOneShot(dying_npc);
         killNPC();
 
     }

@@ -15,7 +15,9 @@ public class TimeController : MonoBehaviour
     public AudioSource source;
     public AudioClip chillClip;
     public AudioClip noChillClip;
-    public AudioClip finJuego;
+
+    public AudioClip Complete_bell;
+    public AudioClip dying_npc;
 
     private void Start()
     {
@@ -62,12 +64,13 @@ public class TimeController : MonoBehaviour
     {
         Debug.Log("Estoy sumando tiempo");
         restante += segAdd;
+        source.PlayOneShot(Complete_bell);
     }
 
     public void restTime(int segRest)
     {
         Debug.Log("Estoy restando tiempo");
         restante -= segRest;
-
+        source.PlayOneShot(dying_npc);
     }
 }
