@@ -9,7 +9,7 @@ public class NavMeshController : MonoBehaviour
     public NavMeshAgent agent;
     public Seat onTable;
     public float movementSpeed;
-    private enum animationState {idle, walking, sit_idle, sit_pointing, sit_angry};
+    private enum animationState { idle, walking, sit_idle, sit_pointing, sit_angry };
     public Animator anim;
     [SerializeField] private bool isAtSeat = false;
     [SerializeField] private bool isMoving; //this could be replaced for just a value greater than 0 on the movement vector
@@ -26,28 +26,25 @@ public class NavMeshController : MonoBehaviour
     public AudioClip Complete_bell;
     public AudioClip dying_npc;
 
-    TimeController TimeController;
-    ClienteAtendido ClienteAtendido;
+    public TimeController TimeController;
+    public ClienteAtendido ClienteAtendido;
 
     // Start is called before the first frame update
     void Start()
     {
-        source = GetComponent<AudioSource>();
         agent = GetComponent<NavMeshAgent>();
         anim = GetComponent<Animator>();
-        tableObjects = GameObject.FindGameObjectsWithTag("seat").Where(o => !o.GetComponent<Seat>().isOccupied).ToArray();
 
-        TimeController = GameObject.FindGameObjectWithTag("Timer_Tag").GetComponent<TimeController>();
-        ClienteAtendido = GameObject.FindGameObjectWithTag("Costumer_Tag").GetComponent<ClienteAtendido>();
+        tableObjects = GameObject.FindGameObjectsWithTag("seat").Where(o => !o.GetComponent<Seat>().isOccupied).ToArray();
 
         tables = new Transform[tableObjects.Length];
         //Collider[] colliders = tableObjects.SelectMany(t => t.GetComponentsInChildren<Collider>()).ToArray();
 
-        
+
 
         for (int i = 0; i < tableObjects.Length; i++)
         {
-            Debug.Log($"Mesa {i} esta {tableObjects[i].GetComponent<Seat>().isOccupied}");
+            //Debug.Log($"Mesa {i} esta {tableObjects[i].GetComponent<Seat>().isOccupied}");
             if (!tableObjects[i].GetComponent<Seat>().isOccupied)
             {
                 tables[i] = tableObjects[i].transform;
@@ -57,11 +54,11 @@ public class NavMeshController : MonoBehaviour
         onTable = emptyTable.GetComponent<Seat>();
 
 
-        Debug.Log($"Mesas disponibles {tables.Length}");
+        //Debug.Log($"Mesas disponibles {tables.Length}");
 
-        if (emptyTable != null )
+        if (emptyTable != null)
         {
-            Debug.Log("Dentro del empty table not null");
+            //Debug.Log("Dentro del empty table not null");
             target = emptyTable;
             agent.destination = target.position;
             agent.speed = movementSpeed;
@@ -73,23 +70,24 @@ public class NavMeshController : MonoBehaviour
     void Update()
     {
 
-         if (timerStarted)
+        if (timerStarted)
         {
             timer += Time.deltaTime;
         }
-        
+
         if (timer >= destructionDelay)
         {
-            killNPC();
+            //killNPC();
+            clientNotServed();
         }
 
-        if(!isAtSeat)
+        if (!isAtSeat)
         {
             agent.destination = target.position;
             isMoving = agent.velocity.magnitude > 0.1f; //Check if agent is moving
         }
         UpdateAnimationState();
-        
+
     }
 
 
@@ -129,7 +127,7 @@ public class NavMeshController : MonoBehaviour
                 }
             }
         }
-        anim.SetInteger("state",(int)state);
+        anim.SetInteger("state", (int)state);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -138,27 +136,27 @@ public class NavMeshController : MonoBehaviour
         {
             isAtSeat = true;
             // StartCoroutine(logger("reached seat, starting counter"));
-            timerStarted = true;                      
-            Debug.Log("Reached seat, starting timer.");                 
+            timerStarted = true;
+            //Debug.Log("Reached seat, starting timer.");
 
         }
         if (other.CompareTag("Food"))
         {
-            Debug.Log("Customer is in contact Food."); 
-            clientServed();                
+            //Debug.Log("Customer is in contact Food.");
+            clientServed();
         }
     }
 
     public void clientServed()
     {
         TimeController.addTime(10); //We can change the amount of time that is add
-        ClienteAtendido.atendido();//sum clientes atendidos 
+        ClienteAtendido.atendido();
         source.PlayOneShot(Complete_bell);
         killNPC();
     }
 
     public void clientNotServed()
-{
+    {
         TimeController.restTime(10); //We can change the amount of time that is rest
         source.PlayOneShot(dying_npc);
         killNPC();

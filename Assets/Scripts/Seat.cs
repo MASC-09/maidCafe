@@ -11,7 +11,7 @@ public class Seat : MonoBehaviour
         if (other.CompareTag("Customer")) // replace "Player" with the tag of the trigger you want to use
         {
             isOccupied = true;
-            Debug.Log("reached seat");
+            //Debug.Log("reached seat");
 
         }
     }
