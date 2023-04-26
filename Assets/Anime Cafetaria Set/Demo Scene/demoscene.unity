@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 85116604}
-  m_IndirectSpecularColor: {r: 0.18271899, g: 0.22842878, b: 0.30708593, a: 1}
+  m_IndirectSpecularColor: {r: 0.1827183, g: 0.22842774, b: 0.30708414, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3635,8 +3635,8 @@ CharacterController:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Height: 0
-  m_Radius: 0.5
+  m_Height: 1.14
+  m_Radius: 0.17
   m_SlopeLimit: 30
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
@@ -8717,7 +8717,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 131c256ec7c4bca4c8171850e1cae933, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.713
+      value: 0.89
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 131c256ec7c4bca4c8171850e1cae933, type: 3}
       propertyPath: m_LocalPosition.y
@@ -8725,7 +8725,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 131c256ec7c4bca4c8171850e1cae933, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -3.033
+      value: -3.215
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 131c256ec7c4bca4c8171850e1cae933, type: 3}
       propertyPath: m_LocalRotation.w
@@ -12978,7 +12978,7 @@ MonoBehaviour:
   spawnLimit: 56
   isOn: 1
   source: {fileID: 2089351028}
-  doorbell: {fileID: 8300000, guid: 7efd267835dc0598895a29173c5bc901, type: 3}
+  doorbell: {fileID: 8300000, guid: 0065d26746884439e98aa4f99266e793, type: 3}
 --- !u!82 &2089351028
 AudioSource:
   m_ObjectHideFlags: 0
