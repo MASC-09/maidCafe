@@ -27,14 +27,15 @@ public class NavMeshController : MonoBehaviour
     public AudioClip dying_npc;
 
     public TimeController TimeController;
-    public ClienteAtendido ClienteAtendido;
+    public ClienteAtendido clienteAtendido;
 
     // Start is called before the first frame update
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
         anim = GetComponent<Animator>();
-
+        TimeController = FindObjectOfType<TimeController>();
+        clienteAtendido = FindObjectOfType<ClienteAtendido>();
         tableObjects = GameObject.FindGameObjectsWithTag("seat").Where(o => !o.GetComponent<Seat>().isOccupied).ToArray();
 
         tables = new Transform[tableObjects.Length];
@@ -150,7 +151,7 @@ public class NavMeshController : MonoBehaviour
     public void clientServed()
     {
         TimeController.addTime(10); //We can change the amount of time that is add
-        ClienteAtendido.atendido();
+        clienteAtendido.atendido();
         source.PlayOneShot(Complete_bell);
         killNPC();
     }
